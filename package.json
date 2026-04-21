@@ -1,0 +1,25 @@
+{
+  "name": "performance-testing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:e2e": "playwright test",
+    "load": "docker run --rm -i -v \"$PWD:/scripts\" -w /scripts -e K6_STAGE_TARGET=${K6_STAGE_TARGET:-10} -e K6_SLEEP_SEC=${K6_SLEEP_SEC:-1} -e TARGET_URL grafana/k6:latest run load/saucedemo-load.js",
+    "load:ci": "K6_STAGE_TARGET=5 K6_SLEEP_SEC=1 docker run --rm -i -v \"$PWD:/scripts\" -w /scripts -e K6_STAGE_TARGET -e K6_SLEEP_SEC -e TARGET_URL grafana/k6:latest run load/saucedemo-load.js",
+    "load:docker": "docker run --rm -i -v \"$PWD:/scripts\" -w /scripts -e K6_STAGE_TARGET -e K6_SLEEP_SEC -e TARGET_URL grafana/k6:latest run load/saucedemo-load.js",
+    "load:native": "k6 run load/saucedemo-load.js",
+    "test:perf": "playwright test tests/performance.spec.js --project=chromium --reporter=html",
+    "doc:html": "node scripts/build-doc-html.js",
+    "perf:all": "node scripts/run-performance-and-doc.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "@types/node": "^25.6.0"
+  }
+}

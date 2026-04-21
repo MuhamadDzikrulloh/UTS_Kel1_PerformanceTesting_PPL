@@ -1,0 +1,10 @@
+{
+  "testName": "Performance SauceDemo",
+  "url": "https://www.saucedemo.com/",
+  "totalMs": 847,
+  "finishedAt": "2026-04-18T13:23:36.190Z",
+  "screenshots": [
+    "01-halaman-login.png",
+    "02-halaman-produk.png"
+  ]
+}
